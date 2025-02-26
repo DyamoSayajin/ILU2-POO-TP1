@@ -82,9 +82,10 @@ public class Village {
 	}
 	public String installerVendeur(Gaulois vendeur, String produit, int nbProduit) {
 		StringBuilder texte = new StringBuilder();
+		int etalLibre = marche.trouverEtalLibre();
 		texte.append(vendeur.getNom() + " cherche un endroit pour vendre " + nbProduit + produit +".\n");
-		marche.utiliserEtal(marche.trouverEtalLibre(), vendeur, produit, nbProduit);
-		texte.append("Le vendeur " + vendeur.getNom() + "vend des " + produit + " à l'étal n° " + marche.trouverVendeur(vendeur));
+		marche.utiliserEtal(etalLibre, vendeur, produit, nbProduit);
+		texte.append("Le vendeur " + vendeur.getNom() + "vend des " + produit + " à l'étal n° " + etalLibre);
 		return texte.toString();
 	}
 	
@@ -117,11 +118,8 @@ public class Village {
 	
 	public String afficherMarche() {
 		StringBuilder texte = new StringBuilder();
-		texte.append("Le marché du village " + this.nom + " possède plusieurs étals : \n");
-		for (int i = 0; i < marche.length; i++) {
-			
-		}
-		return texte.toString();
+		texte.append("Le marché du vilagge " + getNom() + "possède plusieurs étals: \n");
+		return texte + marche.afficherMarche();
 	}
 	public String getNom() {
 		return nom;
